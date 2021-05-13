@@ -1,0 +1,171 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0px;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+.menu-container {
+  /* border: 1px solid red; */
+  height: 4rem;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-left: 0.5rem;
+}
+.menu-container > * {
+  height: 60%;
+  border: 1px solid red;
+}
+.font-size {
+  width: 5%;
+}
+.font-family {
+  width: 21%;
+}
+.bui-container {
+  min-width: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.bui-container span {
+  font-family: sans-serif;
+  background-color: white;
+  color: rgb(72, 71, 71);
+  padding: 0.5rem;
+  margin: 0;
+  height: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 2px solid rgb(94, 93, 93, 0.5);
+}
+.bui-container span:hover {
+  background-color: rgb(184, 184, 184);
+  color: black;
+}
+
+.align-container {
+  min-width: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+.align-container span {
+}
+
+.color-container {
+  width: 25%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.formula-container {
+  /* border: 1px solid red; */
+  height: 2rem;
+  background-color: rgb(40, 116, 40);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.formula-container > * {
+  height: 70%;
+}
+
+.address-input {
+  width: 4rem;
+}
+.formula-input {
+  width: calc(100vw - 6rem);
+}
+.grid-container {
+  height: calc(100vh - (4rem + 2rem + 2rem));
+
+  overflow: auto;
+  position: relative;
+}
+.box {
+  height: 2rem;
+  width: 2rem;
+  border: 1px solid;
+  text-align: center;
+  background-color: #0f9d58;
+}
+.left_box {
+  background-color: gray;
+}
+.top_row {
+  height: 2rem;
+  background-color: #0f9d58;
+  color: white;
+  display: flex;
+  position: absolute;
+  left: 2rem;
+  top: 0rem;
+}
+.grid {
+  /* height:2rem; */
+  background-color: white;
+  position: absolute;
+  left: 2rem;
+  top: 2rem;
+}
+.cell {
+  border-right: 3px solid rgba(126, 125, 125, 0.5);
+  border-bottom: 0.5px solid;
+  height: 2rem;
+  min-width: 6rem;
+  text-align: center;
+  overflow: hidden;
+}
+.row {
+  display: flex;
+}
+
+/* sheets */
+.sheets-container {
+  /* border: 1px solid red; */
+  background-color: lightblue;
+  height: 2rem;
+  display: flex;
+}
+.add-sheet_btn-container {
+  width: 3rem;
+  border: 1px solid;
+  height: 100%;
+  padding-top: 0.2rem;
+  padding-left: 0.3rem;
+}
+.sheet-list {
+  width: calc(100vw - 3rem);
+  border: 1px solid;
+  display: flex;
+  overflow: auto;
+}
+.sheet-list::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.sheet-list {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.sheet {
+  min-width: 5rem;
+  border: 1px solid blue;
+  height: 100%;
+  background-color: gray;
+}
+.active {
+  background-color: white;
+}
+.active-btn {
+  background-color: gray;
+}

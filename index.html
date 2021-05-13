@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FireFox Sheets</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/css/all.min.css"
+      class="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="menu-container">
+      <select class="font-size">
+        <option value="8">12</option>
+        <option value="10">16</option>
+        <option value="12">32</option>
+        <option value="16" selected>42</option>
+        <option value="32">50</option>
+      </select>
+      <select class="font-family">
+        <option value="monospace">monospace</option>
+        <option value="sans-serif" selected>sans-serif</option>
+        <option value="Aerial">Aerial</option>
+        <option value="Georgia">Georgia</option>
+        <option value="fantasy">fantasy</option>
+      </select>
+      <div class="bui-container">
+        <span><i class="fas fa-bold bold"></i></span>
+        <span><i class="fas fa-italic italic"></i></span>
+        <span><i class="fas fa-underline underline"></i></span>
+      </div>
+      <div class="align-container">
+        <span><i class="fas fa-align-left left"></i></span>
+        <span><i class="fas fa-align-center center"></i></span>
+        <span><i class="fas fa-align-right right"></i></span>
+      </div>
+      <div class="color-container">
+        <span>Text-Color</span>
+        <input type="color" class="color" />
+        <span>Background-Color</span>
+        <input type="color" class="bg-color" />
+      </div>
+    </div>
+    <div class="formula-container">
+      <input type="text" class="address-input" readonly />
+      <input type="text" class="formula-input" />
+    </div>
+    <div class="grid-container">
+      <div class="left_box box"></div>
+      <div class="top_row"></div>
+      <div class="left_col"></div>
+      <div class="grid"></div>
+    </div>
+    <div class="sheets-container">
+      <div class="add-sheet_btn-container">add</div>
+      <div class="sheet-list">
+        <div class="sheet active" idx="0">Sheet1</div>
+      </div>
+    </div>
+  </body>
+  <script defer src="script.js"></script>
+  <script defer src="grid.js"></script>
+</html>
