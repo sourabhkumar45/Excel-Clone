@@ -13,6 +13,11 @@ const fontSizeBtn = document.querySelector(".font-size");
 const left = document.querySelector(".left");
 const right = document.querySelector(".right");
 const center = document.querySelector(".center");
+const colorInput = document.querySelector(".color");
+const bgColorInput = document.querySelector(".bg-color");
+const formulaCont = document.querySelector(".formula-input");
+let prevCell;
+
 address.value = "";
 let sheetDB = [];
 // prettier-ignore
@@ -61,6 +66,8 @@ for (let i = 0; i < rows; i++) {
       fontSize: "16",
       color: "black",
       bColor: "none",
+      value: "",
+      formula: "",
     };
     row.push(cell);
   }
@@ -75,6 +82,16 @@ grid.addEventListener("click", function (e) {
   address.value = addr;
 
   e.target.setAttribute("contenteditable", "true");
+  if (prevCell != undefined) {
+    prevCell.style.border = "none";
+    prevCell.style.borderRight = "3px solid rgba(126, 125, 125, 0.5)";
+    prevCell.style.borderBottom = "0.5px solid";
+    e.target.style.border = "3px solid #0f9d58";
+    prevCell = e.target;
+  } else {
+    e.target.style.border = "3px solid #0f9d58";
+    prevCell = e.target;
+  }
   let j = addr.charCodeAt(0) - 65;
   let i = Number(addr[1]);
   e.target.style.fontFamily = sheetDB[i - 1][j].fontFamily;
@@ -101,7 +118,7 @@ grid.addEventListener("click", function (e) {
   if (sheetDB[i - 1][j].italic == "italic") {
     italic.classList.add("active-btn");
   } else {
-    italic.classList.remove("active-btn");
+    underline.classList.remove("active-btn");
   }
   if (sheetDB[i - 1][j].underline == "underline") {
     underline.classList.add("active-btn");
@@ -228,4 +245,26 @@ fontSizeBtn.addEventListener("change", function (e) {
   let i = Number(addr[1]);
   cell.style.fontSize = fontSizeBtn.value + "px";
   changeSheetDB("fontSize", fontSizeBtn.value + "px", i - 1, j);
+});
+
+colorInput.addEventListener("change", () => {
+  let addr = address.value;
+  let cell = document.querySelector(
+    `.cell[cid='${addr[0]}'][rid='${addr[1]}']`
+  );
+  let j = addr[0].charCodeAt(0) - 65; // column
+  let i = Number(addr[1]);
+  cell.style.color = colorInput.value;
+  changeSheetDB("color", colorInput.value, i - 1, j);
+});
+
+bgColorInput.addEventListener("change", () => {
+  let addr = address.value;
+  let cell = document.querySelector(
+    `.cell[cid='${addr[0]}'][rid='${addr[1]}']`
+  );
+  let j = addr[0].charCodeAt(0) - 65; // column
+  let i = Number(addr[1]);
+  cell.style.backgroundColor = bgColorInput.value;
+  changeSheetDB("backgroundColor", bgColorInput.value, i - 1, j);
 });

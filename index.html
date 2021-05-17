@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FireFox Sheets</title>
     <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/css/all.min.css"
       class="stylesheet"
@@ -44,6 +48,13 @@
         <span>Background-Color</span>
         <input type="color" class="bg-color" />
       </div>
+      <div class="nos-container">
+        <span class="material-icons-outlined material-icons new"> add </span>
+        <span class="material-icons-outlined material-icons save"> save </span>
+        <span class="material-icons-outlined material-icons open">
+          <input type="file" id="open" />
+        </span>
+      </div>
     </div>
     <div class="formula-container">
       <input type="text" class="address-input" readonly />
@@ -64,4 +75,6 @@
   </body>
   <script defer src="script.js"></script>
   <script defer src="grid.js"></script>
+  <script defer src="newOpenSave.js"></script>
+  <script defer src="formula.js"></script>
 </html>

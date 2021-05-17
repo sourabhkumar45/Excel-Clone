@@ -70,10 +70,21 @@ body::-webkit-scrollbar {
 .formula-container {
   /* border: 1px solid red; */
   height: 2rem;
-  background-color: rgb(40, 116, 40);
+  background-color: rgb(150, 151, 150);
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+.nos-container {
+  width: 15%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.nos-container > *:hover {
+  background-color: gray;
+  cursor: pointer;
 }
 .formula-container > * {
   height: 70%;
@@ -124,6 +135,7 @@ body::-webkit-scrollbar {
   min-width: 6rem;
   text-align: center;
   overflow: hidden;
+  outline: none;
 }
 .row {
   display: flex;

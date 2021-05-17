@@ -5,3 +5,5 @@
 - multiple sheets
 - new files, download, open sheets.
 - while switching sheets we will change data only not remake the sheet again.
+## Formula
+- A1 + 
