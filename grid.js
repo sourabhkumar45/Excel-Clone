@@ -16,7 +16,7 @@ const center = document.querySelector(".center");
 address.value = "";
 let sheetDB = [];
 // prettier-ignore
-const alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",];
+const alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 let rows = 100;
 let cols = 26;
 
