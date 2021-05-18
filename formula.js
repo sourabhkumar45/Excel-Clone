@@ -8,37 +8,36 @@ grid.addEventListener("click", (e) => {
     let i = Number(addr[1]);
     //console.log(i - 1, j);
     sheetDB[i - 1][j].value = e.target.innerText;
-    console.log(sheetDB[i - 1][j].value);
+    let cellObj = sheetDB[i - 1][j];
+    updateChildren(cellObj);
+    //console.log(sheetDB[i - 1][j].value);
   });
 });
 formulaCont.addEventListener("keydown", (e) => {
   if (e.key == "Enter" && formulaCont.value) {
     let cFormula = formulaCont.value;
     let value = evaluateFormula(cFormula);
-    setCell(value);
+    let childAddress = address.value;
+    setCell(value, cFormula);
+    setChildrenArray(cFormula, childAddress);
   }
 });
 
 function evaluateFormula(formula) {
   let formulaToken = formula.split(" ");
-  console.log(formulaToken);
   for (let i = 0; i < formulaToken.length; i++) {
     let ascii = formulaToken[i].charAt(0);
     ascii = ascii.charCodeAt(0);
 
     if (ascii >= 65 && ascii <= 90) {
-      console.log("ascii = ", ascii);
       let i1 = formulaToken[i].charCodeAt(0) - 65;
       let j = Number(formulaToken[i][1]);
-      console.log(i1, j - 1);
       let value = sheetDB[Number(j) - 1][i1].value;
 
       formulaToken[i] = value;
     }
   }
-  console.log(formulaToken);
   let eformula = formulaToken.join(" ");
-  console.log(eformula);
   return eval(eformula);
 }
 
@@ -56,4 +55,48 @@ function findUIElement() {
     `.cell[cid='${addr[0]}'][rid='${addr[1]}']`
   );
   return cell;
+}
+
+function setChildrenArray(formula, childAddress) {
+  let formulaToken = formula.split(" ");
+  for (let i = 0; i < formulaToken.length; i++) {
+    let ascii = formulaToken[i].charAt(0);
+    ascii = ascii.charCodeAt(0);
+
+    if (ascii >= 65 && ascii <= 90) {
+      let i1 = formulaToken[i].charCodeAt(0) - 65;
+      let j = Number(formulaToken[i][1]);
+      let parentObj = sheetDB[Number(j) - 1][i1];
+      parentObj.children.push(childAddress);
+    }
+  }
+  console.log(sheetDB);
+}
+
+function updateChildren(cellObj) {
+  console.log("Called");
+  let { children } = cellObj;
+  for (let i = 0; i < children.length; i++) {
+    let childAddress = children[i];
+    let j = childAddress.charCodeAt(0) - 65;
+    let i1 = Number(childAddress[1]);
+    let childObj = sheetDB[i1 - 1][j];
+    let chFormula = childObj.formula;
+    let newValue = evaluateFormula(chFormula);
+    setChildrenCell(chFormula, newValue, childAddress);
+    updateChildren(childObj);
+  }
+}
+
+function setChildrenCell(chFormula, newValue, childAddress) {
+  console.log(childAddress);
+  let cell = document.querySelector(
+    `.cell[rid="${childAddress[1]}"][cid="${childAddress[0]}"]`
+  );
+  let j = childAddress.charCodeAt(0) - 65;
+  let i = Number(childAddress[1]);
+
+  cell.innerText = newValue;
+  sheetDB[i - 1][j].value = newValue;
+  sheetDB[i - 1][j].formula = chFormula;
 }

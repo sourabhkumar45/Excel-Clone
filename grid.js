@@ -68,6 +68,7 @@ for (let i = 0; i < rows; i++) {
       bColor: "none",
       value: "",
       formula: "",
+      children: [],
     };
     row.push(cell);
   }
