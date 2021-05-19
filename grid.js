@@ -1,4 +1,9 @@
 "use strict";
+let btnContainer = document.querySelector(".add-sheet_btn-container");
+let sheetCont = document.querySelector(".sheet-container");
+let sheetList = document.querySelector(".sheet-list");
+let firstSheet = document.querySelector(".sheet");
+firstSheet.addEventListener("click", handleSheet);
 
 const leftCol = document.querySelector(".left_col");
 const topRow = document.querySelector(".top_row");
@@ -19,11 +24,40 @@ const formulaCont = document.querySelector(".formula-input");
 let prevCell;
 
 address.value = "";
-let sheetDB = [];
+let sheetDB;
+let sheetArray = [];
+
 // prettier-ignore
 const alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 let rows = 100;
 let cols = 26;
+createSheet();
+btnContainer.addEventListener("click", function () {
+  let AllSheets = document.querySelectorAll(".sheet");
+  let lastSheet = AllSheets[AllSheets.length - 1];
+  let lastIdx = lastSheet.getAttribute("idx");
+  lastIdx = Number(lastIdx);
+  let newSheet = document.createElement("div");
+  newSheet.setAttribute("class", "sheet");
+  newSheet.setAttribute("idx", `${lastIdx + 1}`);
+  newSheet.innerHTML = `Sheet ${lastIdx + 2}`;
+  sheetList.appendChild(newSheet);
+
+  for (let i = 0; i < AllSheets.length; i++) {
+    AllSheets[i].classList.remove("active");
+  }
+  newSheet.classList.add("active");
+  newSheet.addEventListener("click", handleSheet);
+});
+
+function handleSheet(e) {
+  let sheet = e.currentTarget;
+  let AllSheets = document.querySelectorAll(".sheet");
+  for (let i = 0; i < AllSheets.length; i++) {
+    AllSheets[i].classList.remove("active");
+  }
+  sheet.classList.add("active");
+}
 
 for (let i = 1; i <= 100; i++) {
   let colBox = document.createElement("div");
@@ -53,27 +87,36 @@ for (let i = 0; i < rows; i++) {
   }
   grid.appendChild(row);
 }
-
-for (let i = 0; i < rows; i++) {
-  let row = [];
-  for (let j = 0; j < cols; j++) {
-    let cell = {
-      bold: "normal",
-      italic: "normal",
-      underline: "none",
-      hAlign: "center",
-      fontFamily: "sans-serif",
-      fontSize: "16",
-      color: "black",
-      bColor: "none",
-      value: "",
-      formula: "",
-      children: [],
-    };
-    row.push(cell);
+function createSheet() {
+  let newDB = [];
+  for (let i = 0; i < rows; i++) {
+    let row = [];
+    let s = "";
+    for (let j = 0; j < cols; j++) {
+      let cell = {
+        bold: "normal",
+        italic: "normal",
+        underline: "none",
+        hAlign: "center",
+        fontFamily: "sans-serif",
+        fontSize: "16",
+        color: "black",
+        bColor: "none",
+        value: "",
+        formula: "",
+        children: [],
+      };
+      let cid = String.fromCharCode(65 + j);
+      let rid = i + 1;
+      let c = document.querySelector(`.cell[cid='${cid}'][rid='${rid}']`);
+      c.innerText = "";
+      row.push(cell);
+    }
+    newDB.push(row);
   }
-  sheetDB.push(row);
+  sheetDB = newDB;
 }
+
 function changeSheetDB(prop, value, i, j) {
   sheetDB[i][j][prop] = value;
 }
@@ -126,6 +169,9 @@ grid.addEventListener("click", function (e) {
   } else {
     underline.classList.remove("active-btn");
   }
+  if (sheetDB[i - 1][j].formula != "")
+    formulaCont.value = sheetDB[i - 1][j].formula;
+  else formulaCont.value = "";
 });
 
 bold.addEventListener("click", function (e) {

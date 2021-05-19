@@ -7,15 +7,37 @@ grid.addEventListener("click", (e) => {
     let j = addr.charCodeAt(0) - 65;
     let i = Number(addr[1]);
     //console.log(i - 1, j);
-    sheetDB[i - 1][j].value = e.target.innerText;
+
     let cellObj = sheetDB[i - 1][j];
+    if (cellObj.value == e.target.innerText) {
+      return;
+    }
+    if (cellObj.formula) {
+      removeFormula(cellObj, addr);
+    }
+    sheetDB[i - 1][j].value = e.target.innerText;
+
     updateChildren(cellObj);
     //console.log(sheetDB[i - 1][j].value);
   });
 });
 formulaCont.addEventListener("keydown", (e) => {
+  if (formulaCont.value == "") {
+    let addr = address.value;
+    let j = addr.charCodeAt(0) - 65;
+    let i = Number(addr[1]);
+    sheetDB[i - 1][j].formula = "";
+    return;
+  }
   if (e.key == "Enter" && formulaCont.value) {
     let cFormula = formulaCont.value;
+    let addr = address.value;
+    let j = addr.charCodeAt(0) - 65;
+    let i = Number(addr[1]);
+    let cellObj = sheetDB[i - 1][j];
+    if (cellObj.formula != cFormula) {
+      removeFormula(cellObj, addr);
+    }
     let value = evaluateFormula(cFormula);
     let childAddress = address.value;
     setCell(value, cFormula);
@@ -99,4 +121,22 @@ function setChildrenCell(chFormula, newValue, childAddress) {
   cell.innerText = newValue;
   sheetDB[i - 1][j].value = newValue;
   sheetDB[i - 1][j].formula = chFormula;
+}
+
+function removeFormula(cellObj, myAddress) {
+  let formula = cellObj.formula;
+  let formulaToken = formula.split(" ");
+  for (let i = 0; i < formulaToken.length; i++) {
+    let ascii = formulaToken[i].charAt(0);
+    ascii = ascii.charCodeAt(0);
+
+    if (ascii >= 65 && ascii <= 90) {
+      let i1 = formulaToken[i].charCodeAt(0) - 65;
+      let j = Number(formulaToken[i][1]);
+      let parentObj = sheetDB[Number(j) - 1][i1];
+      let idx = parentObj.children.indexOf(myAddress);
+      parentObj.children.splice(idx, 1);
+    }
+  }
+  cellObj.formula = "";
 }

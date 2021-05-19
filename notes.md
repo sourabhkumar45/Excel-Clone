@@ -5,5 +5,9 @@
 - multiple sheets
 - new files, download, open sheets.
 - while switching sheets we will change data only not remake the sheet again.
+- bugs - cycle, formula format, eval - stack infix
 ## Formula
-- A1 + 
+
+### 3 Cases of Formula
+##### Case 1
+- Simple, first time entered the value and
