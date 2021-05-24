@@ -31,7 +31,7 @@ let sheetArray = [];
 const alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 let rows = 100;
 let cols = 26;
-createSheet();
+
 btnContainer.addEventListener("click", function () {
   let AllSheets = document.querySelectorAll(".sheet");
   let lastSheet = AllSheets[AllSheets.length - 1];
@@ -48,6 +48,7 @@ btnContainer.addEventListener("click", function () {
   }
   newSheet.classList.add("active");
   newSheet.addEventListener("click", handleSheet);
+  createSheet();
 });
 
 function handleSheet(e) {
@@ -115,8 +116,27 @@ function createSheet() {
     newDB.push(row);
   }
   sheetDB = newDB;
+  sheetArray.push(sheetDB);
 }
+createSheet();
 
+sheetList.addEventListener("click", (e) => {
+  if (e.target.classList.contains("sheet")) {
+    let idx = Number(e.target.attributes[1].nodeValue);
+    sheetDB = sheetArray[idx];
+    setUI(sheetDB);
+  }
+});
+function setUI(sheetDB) {
+  for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < cols; j++) {
+      let cell = document.querySelector(
+        `.cell[cid='${String.fromCharCode(65 + j)}'][rid='${i + 1}']`
+      );
+      cell.innerText = sheetDB[i][j].value;
+    }
+  }
+}
 function changeSheetDB(prop, value, i, j) {
   sheetDB[i][j][prop] = value;
 }
