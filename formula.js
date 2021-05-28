@@ -1,7 +1,7 @@
 //let allCells = document.querySelectorAll(".grid .cell");
 
 grid.addEventListener("click", (e) => {
-  e.target.addEventListener("blur", (e1) => {
+  e.target.addEventListener("blur", () => {
     let addr =
       e.target.attributes.cid.nodeValue + e.target.attributes.rid.nodeValue;
     let j = addr.charCodeAt(0) - 65;
@@ -21,6 +21,7 @@ grid.addEventListener("click", (e) => {
     //console.log(sheetDB[i - 1][j].value);
   });
 });
+
 formulaCont.addEventListener("keydown", (e) => {
   if (formulaCont.value == "") {
     let addr = address.value;
@@ -39,9 +40,8 @@ formulaCont.addEventListener("keydown", (e) => {
       removeFormula(cellObj, addr);
     }
     let value = evaluateFormula(cFormula);
-    let childAddress = address.value;
     setCell(value, cFormula);
-    setChildrenArray(cFormula, childAddress);
+    setChildrenArray(cFormula, addr);
   }
 });
 

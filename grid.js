@@ -105,7 +105,7 @@ function createSheet() {
         bColor: "none",
         value: "",
         formula: "",
-        children: [],
+        children: new Set(),
       };
       let cid = String.fromCharCode(65 + j);
       let rid = i + 1;

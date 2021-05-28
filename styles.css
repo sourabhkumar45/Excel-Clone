@@ -5,14 +5,29 @@ body {
   margin: 0px;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+  overflow: hidden;
 }
 body::-webkit-scrollbar {
   display: none;
 }
+.title-container {
+  width: 100vw;
+  height: 5vh;
+  background-color: #0f9d58;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  color: white;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: xx-large;
+}
+.title-container p {
+  padding-left: 2rem;
+}
 .menu-container {
   /* border: 1px solid red; */
   height: 4rem;
-  background-color: white;
+  background-color: #f3f2f1;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -20,7 +35,7 @@ body::-webkit-scrollbar {
 }
 .menu-container > * {
   height: 60%;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 .font-size {
   width: 5%;
@@ -35,8 +50,6 @@ body::-webkit-scrollbar {
   justify-content: space-around;
 }
 .bui-container span {
-  font-family: sans-serif;
-  background-color: white;
   color: rgb(72, 71, 71);
   padding: 0.5rem;
   margin: 0;
@@ -58,8 +71,8 @@ body::-webkit-scrollbar {
   justify-content: center;
   gap: 2rem;
 }
-.align-container span {
-}
+/* .align-container span {
+} */
 
 .color-container {
   width: 25%;
@@ -70,10 +83,10 @@ body::-webkit-scrollbar {
 .formula-container {
   /* border: 1px solid red; */
   height: 2rem;
-  background-color: rgb(150, 151, 150);
+  background-color: #f3f2f1;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 .nos-container {
   width: 15%;
@@ -107,7 +120,8 @@ body::-webkit-scrollbar {
   width: 2rem;
   border: 1px solid;
   text-align: center;
-  background-color: #0f9d58;
+  background-color: #f3f2f1;
+  color: rgb(94, 92, 92);
 }
 .left_box {
   background-color: gray;
@@ -144,16 +158,20 @@ body::-webkit-scrollbar {
 /* sheets */
 .sheets-container {
   /* border: 1px solid red; */
-  background-color: lightblue;
+  background-color: #f3f2f1;
   height: 2rem;
   display: flex;
+  position: fixed;
+  bottom: 0px;
 }
 .add-sheet_btn-container {
   width: 3rem;
   border: 1px solid;
   height: 100%;
-  padding-top: 0.2rem;
-  padding-left: 0.3rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .sheet-list {
   width: calc(100vw - 3rem);
@@ -171,13 +189,13 @@ body::-webkit-scrollbar {
 }
 .sheet {
   min-width: 5rem;
-  border: 1px solid blue;
   height: 100%;
-  background-color: gray;
+  text-align: center;
+}
+.sheet:hover {
+  background-color: rgb(169, 166, 166);
 }
 .active {
   background-color: white;
-}
-.active-btn {
-  background-color: gray;
+  border-bottom: 3px solid #0f9d58;
 }
