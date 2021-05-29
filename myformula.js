@@ -27,7 +27,6 @@ grid.addEventListener("click", (e) => {
     if (cellObj.value == e.target.innerText) {
       return;
     }
-    console.log("cell = ", cellObj.value, "target = ", e.target.innerText);
     cellObj.value = e.target.innerText;
 
     updateMyChildren(cellObj);
