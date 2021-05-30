@@ -5,6 +5,8 @@
 // case 2
 // User changes the value of a parent cell so the change should be reflected in child cell
 // E.g - C1 = A1+B1 change in value of B1 should be reflected back in C1.
+// case 3
+// When value of a cell which contains a formula the association with the parent cell must be removed with formula.
 
 function generateAddress(cid, rid) {
   if (rid == undefined && cid == undefined) {
@@ -26,6 +28,9 @@ grid.addEventListener("click", (e) => {
     // user just click the cell but did not change the value
     if (cellObj.value == e.target.innerText) {
       return;
+    }
+    if (cellObj.formula != "") {
+      removeMyFormula(cellObj, address.value);
     }
     cellObj.value = e.target.innerText;
 
@@ -107,4 +112,17 @@ function updateMyChildren(cellObj) {
     setCellAndDB(newValue, childFormula, child);
     updateMyChildren(childObj);
   }
+}
+function removeMyFormula(cellObj, myAddress) {
+  let formula = cellObj.formula;
+  let tokens = formula.split(" ");
+  for (let k = 0; k < tokens.length; k++) {
+    let code = tokens[k].charCodeAt(0);
+    if (code >= 65 && code <= 90) {
+      let { i, j } = generateAddress(tokens[k].charAt(0), tokens[k].charAt(1));
+      let parenObj = sheetDB[i][j];
+      parenObj.children.delete(myAddress);
+    }
+  }
+  cellObj.formula = ""; // set formula to none as value of cell was manually change
 }

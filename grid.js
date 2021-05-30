@@ -256,7 +256,7 @@ alignBtn.addEventListener("click", function (e) {
   let cell = document.querySelector(
     `.cell[cid='${addr[0]}'][rid='${addr[1]}']`
   );
-  let j = addr[0].charCodeAt(0) - 65; // column
+  let j = addr.charCodeAt(0) - 65; // column
   let i = Number(addr[1]);
   if (e.target.classList.contains("left")) {
     if (!e.target.classList.contains("active-btn")) {
