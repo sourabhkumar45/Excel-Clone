@@ -21,6 +21,8 @@ const center = document.querySelector(".center");
 const colorInput = document.querySelector(".color");
 const bgColorInput = document.querySelector(".bg-color");
 const formulaCont = document.querySelector(".formula-input");
+const colorDiv = document.querySelector(".color-options");
+const bgcolorDiv = document.querySelector(".bgcolor-options");
 let prevCell;
 
 address.value = "";
@@ -314,24 +316,34 @@ fontSizeBtn.addEventListener("change", function (e) {
   changeSheetDB("fontSize", fontSizeBtn.value + "px", i - 1, j);
 });
 
-colorInput.addEventListener("change", () => {
-  let addr = address.value;
-  let cell = document.querySelector(
-    `.cell[cid='${addr[0]}'][rid='${addr[1]}']`
-  );
-  let j = addr[0].charCodeAt(0) - 65; // column
-  let i = Number(addr[1]);
-  cell.style.color = colorInput.value;
-  changeSheetDB("color", colorInput.value, i - 1, j);
+colorInput.addEventListener("click", () => {
+  colorDiv.classList.toggle("hidden");
 });
 
-bgColorInput.addEventListener("change", () => {
-  let addr = address.value;
-  let cell = document.querySelector(
-    `.cell[cid='${addr[0]}'][rid='${addr[1]}']`
-  );
-  let j = addr[0].charCodeAt(0) - 65; // column
-  let i = Number(addr[1]);
-  cell.style.backgroundColor = bgColorInput.value;
-  changeSheetDB("backgroundColor", bgColorInput.value, i - 1, j);
+colorDiv.addEventListener("click", (e) => {
+  if (e.target.style.backgroundColor) {
+    let addr = address.value;
+    let cell = document.querySelector(
+      `.cell[cid='${addr[0]}'][rid='${addr[1]}']`
+    );
+    let j = addr[0].charCodeAt(0) - 65; // column
+    let i = Number(addr[1]);
+    cell.style.color = e.target.style.backgroundColor;
+    changeSheetDB("color", e.target.style.backgroundColor, i - 1, j);
+  }
+});
+bgColorInput.addEventListener("click", () => {
+  bgcolorDiv.classList.toggle("hidden");
+});
+bgcolorDiv.addEventListener("click", (e) => {
+  if (e.target.style.backgroundColor) {
+    let addr = address.value;
+    let cell = document.querySelector(
+      `.cell[cid='${addr[0]}'][rid='${addr[1]}']`
+    );
+    let j = addr[0].charCodeAt(0) - 65; // column
+    let i = Number(addr[1]);
+    cell.style.backgroundColor = e.target.style.backgroundColor;
+    changeSheetDB("backgroundColor", e.target.style.backgroundColor, i - 1, j);
+  }
 });
