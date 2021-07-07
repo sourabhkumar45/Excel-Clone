@@ -6,6 +6,7 @@ body {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
   overflow: hidden;
+  font-family: Arial, Helvetica, sans-serif;
 }
 body::-webkit-scrollbar {
   display: none;
@@ -13,16 +14,25 @@ body::-webkit-scrollbar {
 .title-container {
   width: 100vw;
   height: 5vh;
-  background-color: #0f9d58;
   display: flex;
-  justify-content: start;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   color: white;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: xx-large;
 }
 .title-container p {
   padding-left: 2rem;
+}
+.file-name {
+  font-size: large;
+  padding-left: 1rem;
+}
+.menu-container-item {
+  /* font-size: small; */
+  width: 100%;
+  gap: 20px;
+  display: flex;
 }
 .menu-container {
   /* border: 1px solid red; */
@@ -32,6 +42,14 @@ body::-webkit-scrollbar {
   align-items: center;
   gap: 0.5rem;
   padding-left: 0.5rem;
+}
+.menu-item-option {
+  padding: 3px 5px;
+}
+
+.menu-item-option:hover {
+  border-radius: 3px;
+  background: #f8fafc;
 }
 .menu-container > * {
   height: 60%;
@@ -186,7 +204,7 @@ body::-webkit-scrollbar {
   border-right: 3px solid rgba(126, 125, 125, 0.5);
   border-bottom: 0.5px solid;
   height: 2rem;
-  min-width: 6rem;
+  width: 6rem;
   text-align: center;
   overflow: hidden;
   outline: none;
@@ -241,4 +259,7 @@ body::-webkit-scrollbar {
 }
 .hidden {
   display: none;
+}
+.active-btn {
+  background-color: rgb(162, 162, 162);
 }

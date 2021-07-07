@@ -18,11 +18,27 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="title-container">
-      <span><img src="dots.png" height="25" width="25" /></span>
-      <p>Excel</p>
+    <div class="menu-container-item">
+      <div class="title-container">
+        <span
+          ><img
+            src="sheetsIcons.png"
+            height="50"
+            width="50"
+            style="padding: 7px"
+        /></span>
+        <span class="file-name" title="file name">book1</span>
+      </div>
+      <div class="menu-item-option">File</div>
+      <div class="menu-item-option">Edit</div>
+      <div class="menu-item-option">View</div>
+      <div class="menu-item-option">Insert</div>
+      <div class="menu-item-option">Format</div>
+      <div class="menu-item-option">Data</div>
+      <div class="menu-item-option">Tools</div>
+      <div class="menu-item-option">Add-ons</div>
+      <div class="menu-item-option">Help</div>
     </div>
-
     <div class="menu-container">
       <select class="font-size">
         <option value="8">12</option>
@@ -80,13 +96,6 @@
           </div>
         </span>
       </div>
-      <div class="nos-container">
-        <span class="material-icons-outlined material-icons new"> add </span>
-        <span class="material-icons-outlined material-icons save"> save </span>
-        <span class="material-icons-outlined material-icons open">
-          <input type="file" id="open" />
-        </span>
-      </div>
     </div>
     <div class="formula-container">
       <input type="text" class="address-input" readonly />
@@ -107,7 +116,8 @@
     </div>
   </body>
   <script defer src="script.js"></script>
-  <script defer src="grid.js"></script>
   <script defer src="newOpenSave.js"></script>
+  <script defer src="grid.js"></script>
   <script defer src="myformula.js"></script>
+  <!-- <script defer src="resize.js"></script> -->
 </html>

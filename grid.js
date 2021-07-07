@@ -1,4 +1,5 @@
 "use strict";
+
 let btnContainer = document.querySelector(".add-sheet_btn-container");
 let sheetCont = document.querySelector(".sheet-container");
 let sheetList = document.querySelector(".sheet-list");
@@ -23,12 +24,12 @@ const bgColorInput = document.querySelector(".bg-color");
 const formulaCont = document.querySelector(".formula-input");
 const colorDiv = document.querySelector(".color-options");
 const bgcolorDiv = document.querySelector(".bgcolor-options");
+const fileName = document.querySelector(".file-name");
 let prevCell;
 
 address.value = "";
 let sheetDB;
 let sheetArray = [];
-
 // prettier-ignore
 const alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 let rows = 100;
@@ -121,7 +122,6 @@ function createSheet() {
   sheetArray.push(sheetDB);
 }
 createSheet();
-
 sheetList.addEventListener("click", (e) => {
   if (e.target.classList.contains("sheet")) {
     let idx = Number(e.target.attributes[1].nodeValue);
@@ -184,7 +184,7 @@ grid.addEventListener("click", function (e) {
   if (sheetDB[i - 1][j].italic == "italic") {
     italic.classList.add("active-btn");
   } else {
-    underline.classList.remove("active-btn");
+    italic.classList.remove("active-btn");
   }
   if (sheetDB[i - 1][j].underline == "underline") {
     underline.classList.add("active-btn");
@@ -346,4 +346,8 @@ bgcolorDiv.addEventListener("click", (e) => {
     cell.style.backgroundColor = e.target.style.backgroundColor;
     changeSheetDB("backgroundColor", e.target.style.backgroundColor, i - 1, j);
   }
+});
+
+fileName.addEventListener("click", () => {
+  fileName.setAttribute("contenteditable", "true");
 });
